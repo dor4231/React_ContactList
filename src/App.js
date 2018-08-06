@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import ListContacts from './ListContacts'
-import CreateContact from './CreateContact'
-import * as ContactsAPI from './utils/ContactsAPI'
+import { Route } from 'react-router-dom';
+import ListContacts from './ListContacts';
+import CreateContact from './CreateContact';
+import * as ContactsAPI from './utils/ContactsAPI';
 
 
 
 class App extends Component {
   state = {
-    screens: 'list',
     contacts: []
   }
   componentDidMount() {
@@ -28,12 +28,14 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          {this.state.screens === 'list' && (
-            <ListContacts onDeleteContact={this.removeContact} contacts={this.state.contacts}/>
-          )}
-          {this.state.screens === 'create' && (
-            <CreateContact />
-          )}
+          <Route
+            exact path='/' 
+            render={() => (
+              <ListContacts onDeleteContact={this.removeContact} contacts={this.state.contacts}/>
+            )} />
+          <Route 
+            path='/create'
+            component={CreateContact}/>
         </div>
       </div>
     );
