@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          {this.state.screens == 'list' && (
+          {this.state.screens === 'list' && (
             <ListContacts onDeleteContact={this.removeContact} contacts={this.state.contacts}/>
           )}
           {this.state.screens === 'create' && (
